@@ -30,11 +30,14 @@ async function isUsdcFile(path) {
 }
 
 async function resolveAsset(inputPath, anchorPath) {
+  console.log("resolveAsset %s %s", inputPath, anchorPath );
   const template = vscode.workspace.getConfiguration().get('usd.resolve');
   const command = template.replace("{inputPath}", inputPath).replace("{anchorPath}", anchorPath);
+  console.log("resolveAsset: %s %s", template, command);
   try {
     const { stdout, stderr } = await exec(command);
     let result = stdout.trim(); // Trim new line characters.
+    console.log("result %s", result);
     if (result.length > 0) {
       if (await isUsdcFile(result)) {
         result = "usdc:" + result;
