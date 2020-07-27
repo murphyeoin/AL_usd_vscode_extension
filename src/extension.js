@@ -47,6 +47,7 @@ async function resolveAsset(inputPath, anchorPath) {
   }
   return null;
 }
+exports.resolveAsset = resolveAsset;
 
 async function catUsdFile(inputPath) {
   const template = vscode.workspace.getConfiguration().get('usd.cat');
